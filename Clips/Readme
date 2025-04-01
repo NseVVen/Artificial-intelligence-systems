@@ -17,3 +17,5 @@ SVD		Sniper Rifle		sniper		long		bullet		Снайперка для точных 
 Remington 870	Shotgun			aggressive	close		pellet		Дробовик для ближнего боя и PvE
 Gauss Gun	Energy Rifle		sniper		long		energy		Футуристическое оружие высокой точности
 AMB-17		Assault Rifle		aggressive	close		bullet		Компактный автомат для скрытного боя
+
+Разработано в рамках учебного задания по предмету "Системы искусственного интеллекта".
