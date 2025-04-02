@@ -1,5 +1,5 @@
 
-;;; ==== Шаблоны ====
+;;; ==== РЁР°Р±Р»РѕРЅС‹ ====
 
 (deftemplate player
    (slot playstyle)
@@ -14,7 +14,7 @@
    (slot damage-type)
    (slot description))
 
-;;; ==== База оружия ====
+;;; ==== Р‘Р°Р·Р° РѕСЂСѓР¶РёСЏ ====
 
 (deffacts weapons
    (weapon (name "AK-15")
@@ -22,37 +22,37 @@
            (playstyle tactical)
            (range medium)
            (damage-type bullet)
-           (description "Классический автомат с высоким уроном и хорошей универсальностью."))
+           (description "РљР»Р°СЃСЃРёС‡РµСЃРєРёР№ Р°РІС‚РѕРјР°С‚ СЃ РІС‹СЃРѕРєРёРј СѓСЂРѕРЅРѕРј Рё С…РѕСЂРѕС€РµР№ СѓРЅРёРІРµСЂСЃР°Р»СЊРЅРѕСЃС‚СЊСЋ."))
 
    (weapon (name "SVD")
            (category "Sniper Rifle")
            (playstyle sniper)
            (range long)
            (damage-type bullet)
-           (description "Полуавтоматическая снайперская винтовка для дальнего боя."))
+           (description "РџРѕР»СѓР°РІС‚РѕРјР°С‚РёС‡РµСЃРєР°СЏ СЃРЅР°Р№РїРµСЂСЃРєР°СЏ РІРёРЅС‚РѕРІРєР° РґР»СЏ РґР°Р»СЊРЅРµРіРѕ Р±РѕСЏ."))
 
    (weapon (name "Remington 870")
            (category "Shotgun")
            (playstyle aggressive)
            (range close)
            (damage-type pellet)
-           (description "Надёжный дробовик для ближнего боя против мутантов."))
+           (description "РќР°РґС‘Р¶РЅС‹Р№ РґСЂРѕР±РѕРІРёРє РґР»СЏ Р±Р»РёР¶РЅРµРіРѕ Р±РѕСЏ РїСЂРѕС‚РёРІ РјСѓС‚Р°РЅС‚РѕРІ."))
 
    (weapon (name "Gauss Gun")
            (category "Energy Rifle")
            (playstyle sniper)
            (range long)
            (damage-type energy)
-           (description "Футуристическое энергетическое оружие с высокой точностью."))
+           (description "Р¤СѓС‚СѓСЂРёСЃС‚РёС‡РµСЃРєРѕРµ СЌРЅРµСЂРіРµС‚РёС‡РµСЃРєРѕРµ РѕСЂСѓР¶РёРµ СЃ РІС‹СЃРѕРєРѕР№ С‚РѕС‡РЅРѕСЃС‚СЊСЋ."))
 
    (weapon (name "AMB-17")
            (category "Assault Rifle")
            (playstyle agressive)
            (range close)
            (damage-type bullet)
-           (description "Компактный автомат для скрытного боя на ближней дистанции.")))
+           (description "РљРѕРјРїР°РєС‚РЅС‹Р№ Р°РІС‚РѕРјР°С‚ РґР»СЏ СЃРєСЂС‹С‚РЅРѕРіРѕ Р±РѕСЏ РЅР° Р±Р»РёР¶РЅРµР№ РґРёСЃС‚Р°РЅС†РёРё.")))
 
-;;; ==== Ввод игрока ====
+;;; ==== Р’РІРѕРґ РёРіСЂРѕРєР° ====
 
 (defrule initialize
    (declare (salience 100))
@@ -70,7 +70,7 @@
                    (range ?range)
                    (damage-type ?damage))))
 
-;;; ==== Подбор оружия ====
+;;; ==== РџРѕРґР±РѕСЂ РѕСЂСѓР¶РёСЏ ====
 
 (defrule match-weapon
    (player (playstyle ?p) (range ?r) (damage-type ?d))
@@ -81,14 +81,14 @@
                  (damage-type ?d)
                  (description ?desc))
    =>
-   (printout t crlf "?? Подходит: " ?n " (" ?c ")" crlf ?desc crlf crlf)
+   (printout t crlf "?? РџРѕРґС…РѕРґРёС‚: " ?n " (" ?c ")" crlf ?desc crlf crlf)
    (assert (recommendation-made)))
 
-;;; ==== Нет подходящего оружия ====
+;;; ==== РќРµС‚ РїРѕРґС…РѕРґСЏС‰РµРіРѕ РѕСЂСѓР¶РёСЏ ====
 
 (defrule no-match
    (player (playstyle ?p) (range ?r) (damage-type ?d))
    (not (recommendation-made))
    =>
-   (printout t crlf "?? Не найдено подходящего оружия по указанным критериям." crlf)
-   (printout t "Либо в базе его пока нет, либо оно несовместимо с выбранными параметрами." crlf))
+   (printout t crlf "?? РќРµ РЅР°Р№РґРµРЅРѕ РїРѕРґС…РѕРґСЏС‰РµРіРѕ РѕСЂСѓР¶РёСЏ РїРѕ СѓРєР°Р·Р°РЅРЅС‹Рј РєСЂРёС‚РµСЂРёСЏРј." crlf)
+   (printout t "Р›РёР±Рѕ РІ Р±Р°Р·Рµ РµРіРѕ РїРѕРєР° РЅРµС‚, Р»РёР±Рѕ РѕРЅРѕ РЅРµСЃРѕРІРјРµСЃС‚РёРјРѕ СЃ РІС‹Р±СЂР°РЅРЅС‹РјРё РїР°СЂР°РјРµС‚СЂР°РјРё." crlf))
